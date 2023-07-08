@@ -388,6 +388,7 @@
 "Assets/LeanTween/Testing/TestingSequencer.cs"
 "Assets/ScriptableObjects/PhraseObject.cs"
 "Assets/Scripts/Core/Controller.cs"
+"Assets/Scripts/Core/UIController.cs"
 "Assets/Scripts/PlayerClasses/Adventurer.cs"
 -langversion:9.0
 
