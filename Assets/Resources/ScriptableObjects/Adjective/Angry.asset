@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
   m_Name: Angry
   m_EditorClassIdentifier: 
-  word: angry
+  word: an angry
+  hasAlternateUsage: 0
+  alternateWord: 
   wordModifier: {fileID: 11400000, guid: f01587357b6946b428f8fc2945c8d62c, type: 2}
   impact: 2
   useLevelModifier: 0

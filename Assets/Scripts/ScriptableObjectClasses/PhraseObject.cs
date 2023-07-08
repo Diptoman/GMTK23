@@ -7,9 +7,10 @@ using Sirenix.OdinInspector;
 public class PhraseObject : ScriptableObject
 {
     public string word;
-    public bool hasPlural = false;
-    [ShowIf("@this.hasPlural == true")]
-    public string pluralWord;
+    [Tooltip("If the word has an alternate use, eg. plural for nouns, or present tense for verb")]
+    public bool hasAlternateUsage = false;
+    [ShowIf("@this.hasAlternateUsage == true")]
+    public string alternateWord;
     public WordModifier wordModifier;
     [Range(1f, 4f)]
     public float impact = 1f;

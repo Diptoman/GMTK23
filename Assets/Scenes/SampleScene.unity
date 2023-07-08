@@ -317,14 +317,20 @@ MonoBehaviour:
   questStructures:
   - phrases:
     - useExistingPhraseHere: 0
-      phrase: 'There is a  '
+      phrase: 'There is '
       wordClassification: 0
     - useExistingPhraseHere: 1
       phrase: 
       wordClassification: 0
+    - useExistingPhraseHere: 0
+      phrase: ' '
+      wordClassification: 2
     - useExistingPhraseHere: 1
       phrase: 
       wordClassification: 2
+    - useExistingPhraseHere: 0
+      phrase: ' '
+      wordClassification: 0
     - useExistingPhraseHere: 1
       phrase: 
       wordClassification: 1
@@ -879,6 +885,8 @@ MonoBehaviour:
   controllerReference: {fileID: 717555302}
   dialogueBox: {fileID: 1940332571}
   dialogueTextObj: {fileID: 1311171502}
+  buttonReferences: []
+  buttonPrefab: {fileID: 8125356338480756819, guid: a6b4269ad741a774a9a467a5dae4d7f7, type: 3}
   typingSpeed: 0.04
 --- !u!1001 &9120938358562994706
 PrefabInstance:

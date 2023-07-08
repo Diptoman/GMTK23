@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class Controller : MonoBehaviour
@@ -55,6 +56,28 @@ public class Controller : MonoBehaviour
         {
             verbs.Add((PhraseObject)data);
         }
+    }
+
+    public List<PhraseObject> PickOptions(WordClassification wordClass, int amount)
+    {
+        List<PhraseObject> wordList = new List<PhraseObject>();
+        List<PhraseObject> selectedWordList = new List<PhraseObject>();
+        switch (wordClass)
+        {
+            case WordClassification.Adjective: wordList = adjectives; break;
+            case WordClassification.Location: wordList = locations; break;
+            case WordClassification.Thing: wordList = things; break;
+            case WordClassification.Things: wordList = things; break;
+        }
+
+        for(int i=0; i<amount; i++)
+        {
+            int randomIndex = Random.Range(0, wordList.Count - 1);
+            selectedWordList.Add(wordList[randomIndex]);
+            wordList.RemoveAt(randomIndex);
+        }
+
+        return selectedWordList;
     }
 }
 
