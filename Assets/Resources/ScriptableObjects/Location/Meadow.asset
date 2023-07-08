@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
+  m_Name: Meadow
+  m_EditorClassIdentifier: 
+  word: at the meadow
+  hasPlural: 0
+  pluralWord: 
+  wordModifier: {fileID: 11400000, guid: e3c3d361d40d6744ba97299c62202858, type: 2}
+  impact: 1
+  useLevelModifier: 1
+  idealLevel: 10
+  maxLevelModifier: 3
