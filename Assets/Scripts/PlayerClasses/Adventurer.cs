@@ -12,20 +12,27 @@ public class Adventurer : MonoBehaviour
 
     public float ParseWordOrPhrase(PhraseObject phrase)
     {
-        //Update with new calculator tomorrow
-        float multiplier = CalculateMultiplier(phrase.wordType);
+        float multiplier = 0f;
+        switch (characterClass)
+        {
+            case CharacterClass.Warrior: multiplier = phrase.wordModifier.warriorModifier; break;
+            case CharacterClass.Mage: multiplier = phrase.wordModifier.mageModifier; break;
+            case CharacterClass.Support: multiplier = phrase.wordModifier.supportModifier; break;
+            case CharacterClass.Rogue: multiplier = phrase.wordModifier.rogueModifier; break;
+        }
+        
         float levelMod = 1f;
         if (phrase.useLevelModifier)
         {
-            levelMod = levelModBase - Mathf.Abs(adventurerLevel - phrase.idealLevel) * (levelModBase / 100f);
+            levelMod = phrase.maxLevelModifier - Mathf.Abs(adventurerLevel - phrase.idealLevel) * (phrase.maxLevelModifier / 100f);
         }
-        return phrase.impact * multiplier * levelMod;
+        return ((phrase.impact * multiplier) + levelMod);
     }
 }
 
 public enum CharacterClass
 {
-    Brawler,
+    Warrior,
     Mage,
     Support,
     Rogue

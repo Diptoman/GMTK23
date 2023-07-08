@@ -8,18 +8,61 @@ using System;
 [Serializable]
 public class Controller : MonoBehaviour
 {
-    public List<ScriptableObject> things = new List<ScriptableObject>();
-    public List<ScriptableObject> adjectives = new List<ScriptableObject>();
-    public List<ScriptableObject> locations = new List<ScriptableObject>();
-
     [OdinSerialize]
     public List<QuestLine> questStructures = new List<QuestLine>();
+
+    [Title("Autofills")]
+    public List<PhraseObject> things = new List<PhraseObject>();
+    public List<PhraseObject> adjectives = new List<PhraseObject>();
+    public List<PhraseObject> locations = new List<PhraseObject>();
+    public List<PhraseObject> verbs = new List<PhraseObject>();
+
+    private void Awake()
+    {
+        InitData();
+    }
+
+    private void InitData()
+    {
+        //Load Adjectives
+        UnityEngine.Object[] adjectiveArray;
+        adjectiveArray = Resources.LoadAll("ScriptableObjects/Adjective", typeof(PhraseObject));
+        foreach (var data in adjectiveArray)
+        {
+            adjectives.Add((PhraseObject)data);
+        }
+
+        //Load Things
+        UnityEngine.Object[] thingArray;
+        thingArray = Resources.LoadAll("ScriptableObjects/Thing", typeof(PhraseObject));
+        foreach (var data in thingArray)
+        {
+            things.Add((PhraseObject)data);
+        }
+
+        //Load locations
+        UnityEngine.Object[] locationArray;
+        locationArray = Resources.LoadAll("ScriptableObjects/Location", typeof(PhraseObject));
+        foreach (var data in locationArray)
+        {
+            locations.Add((PhraseObject)data);
+        }
+
+        //Load verbs
+        UnityEngine.Object[] verbArray;
+        verbArray = Resources.LoadAll("ScriptableObjects/Verb", typeof(PhraseObject));
+        foreach (var data in verbArray)
+        {
+            verbs.Add((PhraseObject)data);
+        }
+    }
 }
 
 public enum WordClassification
 {
     Adjective,
     Location,
+    Thing,
     Things
 }
 
