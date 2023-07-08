@@ -314,6 +314,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357ec431691922f449530d3f7a147ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  things:
+  - {fileID: 11400000, guid: cd50808e7080b544cbe824860abfe77e, type: 2}
+  - {fileID: 11400000, guid: 1419426418ccbc640a3ec79459dba013, type: 2}
+  - {fileID: 11400000, guid: 2288794a4175eac42a12f0e3975cf188, type: 2}
+  - {fileID: 11400000, guid: ed2a681deba6b174da6de8e9413c7e8a, type: 2}
+  - {fileID: 11400000, guid: b3d5abda976e3e84abb857cfec147270, type: 2}
+  - {fileID: 11400000, guid: 8b3309cd6c9e7374294fd0385281f077, type: 2}
+  adjectives:
+  - {fileID: 11400000, guid: 06f75debe85c9f9458233050462f4107, type: 2}
+  - {fileID: 11400000, guid: d3a790e706836824ab923a79d087858a, type: 2}
+  - {fileID: 11400000, guid: 76053f5a9a52e804b9ddf7a1973d06fb, type: 2}
+  - {fileID: 11400000, guid: b7e23868265ec19478e021d671775cd4, type: 2}
+  - {fileID: 11400000, guid: a2e5a31082330c94d843786c978ea844, type: 2}
+  locations:
+  - {fileID: 11400000, guid: b5ff957033bffea4fb710fb76bc35c79, type: 2}
+  - {fileID: 11400000, guid: 76d4a23b8fb60734ea51e235976e77a2, type: 2}
+  - {fileID: 11400000, guid: 0b7b8189eb748654a9007263c7576507, type: 2}
+  - {fileID: 11400000, guid: 1f3467ce30e187449aedc809aea049b5, type: 2}
+  - {fileID: 11400000, guid: ba6145138e921244f9c41f143bd7925e, type: 2}
+  questStructures:
+  - phrases:
+    - useExistingPhraseHere: 0
+      phrase: 'There is the '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 2
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 1
+    - useExistingPhraseHere: 0
+      phrase: .
+      wordClassification: 0
 --- !u!4 &717555304
 Transform:
   m_ObjectHideFlags: 0
@@ -855,6 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f43d9132b17044d8d31c5c7d7af10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerReference: {fileID: 717555302}
   dialogueBox: {fileID: 1940332571}
   dialogueTextObj: {fileID: 1311171502}
   typingSpeed: 0.04
