@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
     public float typingSpeed = 0.04f;
     
     private TextMeshProUGUI dialogueText;
+    private QuestLine selectedQuest;
+    private int questLinePosition = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class UIController : MonoBehaviour
         questStructures = controllerReference.GetComponent<Controller>().questStructures;
         
         //Select a quest
-        QuestLine selectedQuest = questStructures[Random.Range(0, questStructures.Count - 1)];
+        selectedQuest = questStructures[Random.Range(0, questStructures.Count - 1)];
 
         //Start writing
         if (!selectedQuest.phrases[0].useExistingPhraseHere)
