@@ -17,13 +17,13 @@ public class CharacterRandomizer : MonoBehaviour
     }
 
     public CharacterClass selectedClass;
-
     public Reference reference;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z)) //TODO: Remove
         {
+            selectedClass = (CharacterClass)UnityEngine.Random.Range(0, 4);
             RandomizeCharacter(selectedClass);
         }
     }
