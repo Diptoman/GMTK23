@@ -386,6 +386,9 @@
 "Assets/LeanTween/Testing/TestingRotate.cs"
 "Assets/LeanTween/Testing/TestingSceneSwitching.cs"
 "Assets/LeanTween/Testing/TestingSequencer.cs"
+"Assets/ScriptableObjects/PhraseObject.cs"
+"Assets/Scripts/Core/Controller.cs"
+"Assets/Scripts/PlayerClasses/Adventurer.cs"
 -langversion:9.0
 
 /deterministic
