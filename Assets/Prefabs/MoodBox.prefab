@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7334181061311107107}
   - component: {fileID: 4228533223994517111}
-  - component: {fileID: 6651759755355348992}
+  - component: {fileID: 6015846826067215797}
+  - component: {fileID: 3520652669319902919}
   m_Layer: 5
   m_Name: MoodImage
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4228533223994517111
 CanvasRenderer:
@@ -46,7 +47,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928559776520726614}
   m_CullTransparentMesh: 1
---- !u!114 &6651759755355348992
+--- !u!114 &6015846826067215797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928559776520726614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460c33e2cac28ab479c4f79cdfee612f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moodSprites:
+  - {fileID: 344397395, guid: ce5e77be43a83a44aaabc76435f0dba2, type: 3}
+  - {fileID: -2145932783, guid: ce5e77be43a83a44aaabc76435f0dba2, type: 3}
+  - {fileID: 221470953, guid: ce5e77be43a83a44aaabc76435f0dba2, type: 3}
+  - {fileID: -1663164913, guid: ce5e77be43a83a44aaabc76435f0dba2, type: 3}
+  - {fileID: 755284114, guid: ce5e77be43a83a44aaabc76435f0dba2, type: 3}
+--- !u!114 &3520652669319902919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,14 +78,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.040583827, g: 0.16337796, b: 0.4528302, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 221470953, guid: ce5e77be43a83a44aaabc76435f0dba2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -145,8 +164,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: cdd15826ebd1471478f733fd9e9e5ec0, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -167,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99db1b4f832e524d8b390b8f1e5be3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moodImage: {fileID: 1928559776520726614}
+  moodImage: {fileID: 6015846826067215797}
 --- !u!82 &4500698185794604970
 AudioSource:
   m_ObjectHideFlags: 0
