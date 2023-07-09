@@ -90,6 +90,10 @@ public class Controller : SerializedMonoBehaviour
 
         StartDay();
 
+        audioSource.clip = bgMusic;
+        audioSource.loop = true;
+        audioSource.Play();
+
         //Reset mood tracker
         moodTracker[Mood.Angry] = 0;
         moodTracker[Mood.Confused] = 0;
@@ -256,6 +260,19 @@ public class Controller : SerializedMonoBehaviour
     {
         isGameOver = true;
         canvas.GetComponent<UIController>().GameOver(reason);
+        
+        if (reason!=EndReason.OutOfTime)
+        {
+            audioSource.clip = murdered;
+            audioSource.loop = false;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.clip = timeUp;
+            audioSource.loop = false;
+            audioSource.Play();
+        }
     }
 }
 

@@ -9,6 +9,20 @@ public class Adventurer : MonoBehaviour
     public CharacterClass characterClass;
     public GameObject controller; //So much tightly coupled poor design for time's sake ;_;
 
+    private AudioSource audioSource;
+    public AudioClip enter;
+    public AudioClip exit;
+    public AudioClip murder;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = enter;
+        audioSource.loop = false;
+        audioSource.volume = 1f;
+        audioSource.Play();
+    }
+
     public float ParseWordOrPhrase(PhraseObject phrase)
     {
         float multiplier = 0f;
@@ -50,11 +64,17 @@ public class Adventurer : MonoBehaviour
     public void FuggOff()
     {
         GetComponent<Animator>().SetTrigger("FuggOff");
+        audioSource.volume = 1f;
+        audioSource.PlayOneShot(exit);
     }
 
     public void BitchSlap()
     {
         GetComponent<Animator>().SetTrigger("BitchSlap");
+        audioSource.clip = murder;
+        audioSource.loop = false;
+        audioSource.volume = .75f;
+        audioSource.Play();
     }
 }
 
