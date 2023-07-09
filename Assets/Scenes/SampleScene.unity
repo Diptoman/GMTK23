@@ -589,7 +589,25 @@ MonoBehaviour:
       phrase: 
       wordClassification: 1
     - useExistingPhraseHere: 0
-      phrase: '. '
+      phrase: '. It has been '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 5
+    - useExistingPhraseHere: 0
+      phrase: ' '
+      wordClassification: 3
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 3
+    - useExistingPhraseHere: 0
+      phrase: '. Adventurer! Please go and '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 4
+    - useExistingPhraseHere: 0
+      phrase: ' it!'
       wordClassification: 0
   canvas: {fileID: 2030566344}
   adventurerPrefab: {fileID: 5132729325250001628, guid: 4569c1f3b7c20f1498cf88f7c154593d, type: 3}

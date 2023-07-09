@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Napkin
+  m_Name: Kill
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: napkin
+  word: kill
   hasAlternateUsage: 1
-  alternateWord: napkins
-  wordModifier: {fileID: 11400000, guid: e3c3d361d40d6744ba97299c62202858, type: 2}
-  impact: 1
+  alternateWord: killing
+  wordModifier: {fileID: 11400000, guid: f01587357b6946b428f8fc2945c8d62c, type: 2}
+  impact: 3

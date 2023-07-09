@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   word: gold
-  hasPlural: 0
-  pluralWord: 
+  hasAlternateUsage: 1
+  alternateWord: gold
   wordModifier: {fileID: 11400000, guid: e1fc639263739fc44a3f6c5d8a8bba8f, type: 2}
   impact: 3
-  useLevelModifier: 0
-  idealLevel: 0
-  maxLevelModifier: 4

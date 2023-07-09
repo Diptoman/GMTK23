@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
   m_Name: Herb
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   word: herb
-  hasPlural: 1
-  pluralWord: herbs
+  hasAlternateUsage: 1
+  alternateWord: herbs
   wordModifier: {fileID: 11400000, guid: a5fef951b3ca02d4b8f1e29bd949b748, type: 2}
   impact: 2
-  useLevelModifier: 0
-  idealLevel: 0
-  maxLevelModifier: 4
