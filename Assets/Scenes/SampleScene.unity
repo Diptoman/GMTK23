@@ -643,7 +643,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 4
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -655,7 +655,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 4
-      Data: 10
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
@@ -667,7 +667,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 4
-      Data: 15
+      Data: 18
     - Name: 
       Entry: 8
       Data: 
@@ -790,7 +790,7 @@ MonoBehaviour:
   adjectives: []
   locations: []
   verbs: []
-  dayTimerMax: -12
+  dayTimerMax: 130
   dayTimerCurrentMax: 0
   currentDay: 0
   dayTaskNum: 3

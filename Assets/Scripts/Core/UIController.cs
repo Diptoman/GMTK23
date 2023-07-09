@@ -179,7 +179,7 @@ public class UIController : MonoBehaviour
                 break;
         }
 
-        secondaryText += "\n You managed " + controllerReference.GetComponent<Controller>().currentDay + " day(s) without messing it up.";
+        secondaryText += "\n\nYou managed " + controllerReference.GetComponent<Controller>().currentDay + " day(s) without messing it up.";
 
         //Add mood numbers
         secondaryText += "\n\n TALLY!\n Ecstatic adventurers: " + controllerReference.GetComponent<Controller>().moodTracker[Mood.Ecstatic];

@@ -12,7 +12,6 @@ public class MoodImage : MonoBehaviour
     void Awake()
     {
         image = this.GetComponent<Image>();
-        Debug.Log("Image set");
     }
 
     public void SetMood(Mood mood)

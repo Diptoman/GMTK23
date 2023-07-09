@@ -90,6 +90,7 @@ public class Controller : SerializedMonoBehaviour
 
     private IEnumerator ResetGame(float startDelay)
     {
+        isGameOver = false;
         canvas.GetComponent<UIController>().ResetGame();
         Destroy(currentAdventurer.gameObject);
         yield return new WaitForSeconds(startDelay);
@@ -202,7 +203,6 @@ public class Controller : SerializedMonoBehaviour
         for(int i=0; i<amount; i++)
         {
             int randomIndex = Random.Range(0, wordList.Count - 1);
-            Debug.Log("Wordlist Count" + wordList.Count);
             selectedWordList.Add(wordList[randomIndex]);
             wordList.RemoveAt(randomIndex);
         }
@@ -215,7 +215,6 @@ public class Controller : SerializedMonoBehaviour
         float moodScore = currentAdventurer.GetComponent<Adventurer>().ParseWordOrPhrase(phrase);
         currentMoodScore += moodScore;
         Mood moodFromWord = ParseMood(moodCeilingsPerPhrase, moodScore);
-        Debug.Log("Mood from this: " + moodScore + " with mood " + moodFromWord);
         canvas.GetComponent<UIController>().ShowMoodIndicator(moodFromWord);
     }
 
@@ -239,7 +238,7 @@ public class Controller : SerializedMonoBehaviour
     {
         Mood finalMood = ParseMood(moodCeilingsOverall, currentMoodScore);
         canvas.GetComponent<UIController>().ShowMoodIndicator(finalMood, 2);
-        Debug.Log("Final mood is " + finalMood);
+        Debug.Log("Final mood is " + finalMood + " with score " + currentMoodScore);
         currentMoodScore = 0f;
 
         if (finalMood != Mood.Angry)
