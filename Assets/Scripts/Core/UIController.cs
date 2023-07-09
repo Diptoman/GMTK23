@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -55,6 +56,9 @@ public class UIController : MonoBehaviour
     private float maxDayTimer;
     private bool isOutOfTime = false;
 
+    private AudioSource audioSource;
+    public AudioClip newDay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +73,8 @@ public class UIController : MonoBehaviour
 
         //Remove day image
         LeanTween.moveLocalX(dayImage, 1000f, 0f);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -91,6 +97,11 @@ public class UIController : MonoBehaviour
 
     public void BeginDay(float timer)
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = newDay;
+        audioSource.loop = false;
+        audioSource.Play();
+
         maxDayTimer = timer;
         currentDayTimer = timer;
         isOutOfTime = false;
