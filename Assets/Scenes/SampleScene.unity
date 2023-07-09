@@ -609,10 +609,6 @@ MonoBehaviour:
     - useExistingPhraseHere: 0
       phrase: ' it!'
       wordClassification: 0
-  - phrases:
-    - useExistingPhraseHere: 0
-      phrase: 
-      wordClassification: 0
   canvas: {fileID: 2030566344}
   adventurerPrefab: {fileID: 5132729325250001628, guid: 4569c1f3b7c20f1498cf88f7c154593d, type: 3}
   things: []
