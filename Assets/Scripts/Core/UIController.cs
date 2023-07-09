@@ -63,6 +63,8 @@ public class UIController : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip newDay;
+    public AudioClip timer;
+    public bool timerBegun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -100,11 +102,21 @@ public class UIController : MonoBehaviour
                 float timerPercentage = (currentDayTimer / maxDayTimer);
                 timerRight.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
                 timerLeft.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
+
+                if (currentDayTimer <= 10f && !timerBegun)
+                {
+                    audioSource.clip = timer;
+                    audioSource.loop = true;
+                    audioSource.Play();
+                    timerBegun = true;
+                }
             }
             else if (!isOutOfTime)
             {
                 controllerReference.GetComponent<Controller>().GameOver(EndReason.OutOfTime);
                 isOutOfTime = true;
+                audioSource.Stop();
+                timerBegun = false;
             }
         }
     }
@@ -129,6 +141,7 @@ public class UIController : MonoBehaviour
         maxDayTimer = timer;
         currentDayTimer = timer;
         isOutOfTime = false;
+        timerBegun = false;
         UpdateTaskText();
         UpdateDayText();
     }
@@ -145,7 +158,7 @@ public class UIController : MonoBehaviour
         switch(reason)
         {
             case EndReason.OutOfTime:
-                primaryText = "You couldn't fulfil today's quota!";
+                primaryText = "You couldn't fulfill today's quota!";
                 secondaryText += "You've been fired from the job for failing to meet deadlines. Welcome to being an average Joe in a game, bud.";
                 break;
             case EndReason.KilledByWarrior:
@@ -180,8 +193,7 @@ public class UIController : MonoBehaviour
         StartCoroutine(ShowGameOverText(.5f, primaryText, secondaryText));
 
         //Remove quest text
-        LeanTween.scale(questText.GetComponent<RectTransform>(), Vector3.zero, 0.1f);
-        LeanTween.scale(dayText.GetComponent<RectTransform>(), Vector3.zero, 0.1f);
+        holder.SetActive(false);
     }
 
     public void ResetGame()
@@ -202,8 +214,7 @@ public class UIController : MonoBehaviour
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0.5f);
         LeanTween.scale(gameOver.GetComponent<RectTransform>(), Vector3.zero, 0f);
         //Add back texts
-        LeanTween.scale(questText.GetComponent<RectTransform>(), Vector3.one, 0.1f);
-        LeanTween.scale(dayText.GetComponent<RectTransform>(), Vector3.one, 0.1f);
+        holder.SetActive(true);
         StartCoroutine(ShowGameOverText(0f, "", ""));
     }
 
