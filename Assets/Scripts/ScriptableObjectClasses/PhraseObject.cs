@@ -14,4 +14,15 @@ public class PhraseObject : SerializedScriptableObject
     public WordModifier wordModifier;
     [Range(1f, 4f)]
     public float impact = 1f;
+
+    void OnValidate()
+    {
+        var isObjectNameMatching = word.ToLower().Contains(this.name.ToLower());
+        var isAltMatching = alternateWord.ToLower().Contains(this.name.ToLower());
+
+        if (!isObjectNameMatching && !isAltMatching)
+        {
+            Debug.LogWarning("Words for scriptable object " + this.name + " don't match!");
+        }
+    }
 }
