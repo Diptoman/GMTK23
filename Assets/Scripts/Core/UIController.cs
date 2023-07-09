@@ -46,7 +46,7 @@ public class UIController : MonoBehaviour
     public GameObject gameOverSideText;
 
     [BoxGroup("Typing")]
-    public float typingSpeed = 0.04f;
+    public float typingSpeed = 0.0001f;
     
     private TextMeshProUGUI dialogueText;
     private QuestLine selectedQuest;
@@ -201,7 +201,7 @@ public class UIController : MonoBehaviour
         questStructures = controllerReference.GetComponent<Controller>().questStructures;
         
         //Select a quest
-        selectedQuest = questStructures[Random.Range(0, questStructures.Count - 1)];
+        selectedQuest = questStructures[Random.Range(0, questStructures.Count)];
 
         ParseQuestLine(.75f);
     }

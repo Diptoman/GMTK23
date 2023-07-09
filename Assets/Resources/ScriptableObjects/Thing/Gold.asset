@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: gold
+  word: pile of gold
   hasAlternateUsage: 1
-  alternateWord: gold
+  alternateWord: pile of gold
   wordModifier: {fileID: 11400000, guid: e1fc639263739fc44a3f6c5d8a8bba8f, type: 2}
   impact: 3

@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
   m_Name: Sad
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   word: a sad
-  hasAlternateUsage: 0
-  alternateWord: 
+  hasAlternateUsage: 1
+  alternateWord: sad
   wordModifier: {fileID: 11400000, guid: e3c3d361d40d6744ba97299c62202858, type: 2}
   impact: 1
-  useLevelModifier: 0
-  idealLevel: 0
-  maxLevelModifier: 4

@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
   m_Name: Cute
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   word: a cute
-  hasAlternateUsage: 0
-  alternateWord: 
+  hasAlternateUsage: 1
+  alternateWord: cute
   wordModifier: {fileID: 11400000, guid: 5084fe6e6c27aed429c0f04eb3c6951e, type: 2}
   impact: 2
-  useLevelModifier: 0
-  idealLevel: 0
-  maxLevelModifier: 4

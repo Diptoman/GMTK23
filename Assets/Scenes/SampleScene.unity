@@ -571,7 +571,7 @@ MonoBehaviour:
   questStructures:
   - phrases:
     - useExistingPhraseHere: 0
-      phrase: 'There is '
+      phrase: 'Greetings, brave adventurer! I have a quest for you! There is '
       wordClassification: 0
     - useExistingPhraseHere: 1
       phrase: 
@@ -608,6 +608,46 @@ MonoBehaviour:
       wordClassification: 4
     - useExistingPhraseHere: 0
       phrase: ' it!'
+      wordClassification: 0
+  - phrases:
+    - useExistingPhraseHere: 0
+      phrase: 'Adventurer! Heed my words! The villagers are being troubled by '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 6
+    - useExistingPhraseHere: 0
+      phrase: ' '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 3
+    - useExistingPhraseHere: 0
+      phrase: '. On top of that, they are '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 5
+    - useExistingPhraseHere: 0
+      phrase: ' us all! You are '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 0
+    - useExistingPhraseHere: 0
+      phrase: ' adventurer - you must '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 4
+    - useExistingPhraseHere: 0
+      phrase: ' them all '
+      wordClassification: 0
+    - useExistingPhraseHere: 1
+      phrase: 
+      wordClassification: 1
+    - useExistingPhraseHere: 0
+      phrase: '! Godspeed to you!'
       wordClassification: 0
   canvas: {fileID: 2030566344}
   adventurerPrefab: {fileID: 5132729325250001628, guid: 4569c1f3b7c20f1498cf88f7c154593d, type: 3}
@@ -1115,8 +1155,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Quests Given: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1947aeffbe4f81449924bce3018e51a, type: 2}
-  m_sharedMaterial: {fileID: 4782399408832891622, guid: c1947aeffbe4f81449924bce3018e51a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b431d402921a3994e85adf091a1d42da, type: 2}
+  m_sharedMaterial: {fileID: 7834191881175850198, guid: b431d402921a3994e85adf091a1d42da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1324,8 +1364,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Day: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c1947aeffbe4f81449924bce3018e51a, type: 2}
-  m_sharedMaterial: {fileID: 4782399408832891622, guid: c1947aeffbe4f81449924bce3018e51a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b431d402921a3994e85adf091a1d42da, type: 2}
+  m_sharedMaterial: {fileID: 7834191881175850198, guid: b431d402921a3994e85adf091a1d42da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2084,7 +2124,7 @@ PrefabInstance:
     - target: {fileID: 4169485091318068652, guid: 950dd1333ab9544408a67e257092bdf1, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: c1947aeffbe4f81449924bce3018e51a, type: 2}
+      objectReference: {fileID: 11400000, guid: b431d402921a3994e85adf091a1d42da, type: 2}
     - target: {fileID: 4169485091318068652, guid: 950dd1333ab9544408a67e257092bdf1, type: 3}
       propertyPath: m_fontSizeBase
       value: 28
@@ -2092,7 +2132,7 @@ PrefabInstance:
     - target: {fileID: 4169485091318068652, guid: 950dd1333ab9544408a67e257092bdf1, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 4782399408832891622, guid: c1947aeffbe4f81449924bce3018e51a, type: 2}
+      objectReference: {fileID: 7834191881175850198, guid: b431d402921a3994e85adf091a1d42da, type: 2}
     - target: {fileID: 4169485091318068652, guid: 950dd1333ab9544408a67e257092bdf1, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

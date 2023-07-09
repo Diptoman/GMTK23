@@ -15,6 +15,7 @@ public class OptionButton : MonoBehaviour
         {
             case WordClassification.Things: useAlternate = true; break;
             case WordClassification.VerbPresent: useAlternate = true; break;
+            case WordClassification.AdjectiveForPlural: useAlternate = true; break;
         }
 
         GetComponentInChildren<TextMeshProUGUI>().text = useAlternate == false ? phrase.word : phrase.alternateWord;

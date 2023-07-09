@@ -180,6 +180,7 @@ public class Controller : SerializedMonoBehaviour
             case WordClassification.Things: wordList.AddRange(things); break;
             case WordClassification.Verb: wordList.AddRange(verbs); break;
             case WordClassification.VerbPresent: wordList.AddRange(verbs); break;
+            case WordClassification.AdjectiveForPlural: wordList.AddRange(adjectives); break;
         }
 
         for(int i=0; i<amount; i++)
@@ -285,7 +286,8 @@ public enum WordClassification
     Thing,
     Things,
     Verb,
-    VerbPresent
+    VerbPresent,
+    AdjectiveForPlural
 }
 
 public enum WordType
