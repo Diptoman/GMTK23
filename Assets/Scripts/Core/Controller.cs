@@ -31,12 +31,12 @@ public class Controller : SerializedMonoBehaviour
     public List<PhraseObject> verbs = new List<PhraseObject>();
 
     //Metagame
-    public float dayTimerMax = 120f;
+    public float dayTimerMax = 100f;
     [HideInInspector]
     public float dayTimerCurrentMax;
     [HideInInspector]
     public int currentDay = 0;
-    public int dayTaskNum = 4;
+    public int dayTaskNum = 3;
     [HideInInspector]
     public float currentDayTaskNum;
     [HideInInspector]
@@ -92,10 +92,10 @@ public class Controller : SerializedMonoBehaviour
     public void StartDay()
     {
         SpawnAdventurer();
-        canvas.GetComponent<UIController>().BeginDay(dayTimerCurrentMax);
         currentDay++;
         dayTimerCurrentMax = dayTimerMax + currentDay * 20f; //New day timer
         currentDayTaskNum++;
+        canvas.GetComponent<UIController>().BeginDay(dayTimerCurrentMax);
     }
 
     public void SpawnAdventurer()

@@ -24,6 +24,8 @@ public class UIController : MonoBehaviour
 
     [BoxGroup("Other UI")]
     public GameObject moodPrefab;
+    [BoxGroup("Other UI")]
+    public GameObject questText;
 
     [BoxGroup("Timer UI")]
     public GameObject timerText;
@@ -86,6 +88,7 @@ public class UIController : MonoBehaviour
         maxDayTimer = timer;
         currentDayTimer = timer;
         isOutOfTime = false;
+        UpdateTaskText();
     }
 
     public void GameOver(EndReason reason)
@@ -133,6 +136,9 @@ public class UIController : MonoBehaviour
         secondaryText += "\n\n\n Enter/Space to restart";
 
         StartCoroutine(ShowGameOverText(.5f, primaryText, secondaryText));
+
+        //Remove quest text
+        LeanTween.scale(questText.GetComponent<RectTransform>(), Vector3.zero, 0.1f);
     }
 
     public void ResetGame()
@@ -151,6 +157,8 @@ public class UIController : MonoBehaviour
 
         //Remove Game Over screen
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0.5f);
+        LeanTween.scale(gameOver.GetComponent<RectTransform>(), Vector3.zero, 0f);
+        LeanTween.scale(questText.GetComponent<RectTransform>(), Vector3.one, 0.1f);
         StartCoroutine(ShowGameOverText(0f, "", ""));
     }
 
@@ -181,6 +189,7 @@ public class UIController : MonoBehaviour
     {
         LeanTween.moveLocalY(dialogueBox, 100f, .5f).setEase(LeanTweenType.easeInOutQuint);
         LeanTween.moveLocalY(dialogueBox, -1000f, .5f).setDelay(2f).setEase(LeanTweenType.easeInOutQuint); //Reset Y
+        UpdateTaskText();
     }
 
     public void ParseQuestLine(float delay)
@@ -268,5 +277,12 @@ public class UIController : MonoBehaviour
         }
 
         ParseQuestLine(0f);
+    }
+
+    public void UpdateTaskText()
+    {
+        float totalTasks = controllerReference.GetComponent<Controller>().currentDayTaskNum;
+        float completedTasks = controllerReference.GetComponent<Controller>().dayTasksCompleted;
+        questText.GetComponent<TextMeshProUGUI>().text = "Tasks completed: " + completedTasks + "/" + totalTasks;
     }
 }

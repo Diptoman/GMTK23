@@ -36,7 +36,7 @@ public class Adventurer : MonoBehaviour
     public void OnFinishExit()
     {
         controller.GetComponent<Controller>().EndRound();
-        
+        Destroy(this.gameObject);
     }
 
     public void OnFinishAttack()
