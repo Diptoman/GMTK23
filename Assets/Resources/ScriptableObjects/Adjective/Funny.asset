@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Crawl
+  m_Name: Funny
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: crawl on
+  word: a funny
   hasAlternateUsage: 1
-  alternateWord: crawling on
-  wordModifier: {fileID: 11400000, guid: 1d317bf9f5989ac479a2c0e40fc75d5a, type: 2}
-  impact: 1
+  alternateWord: funny
+  wordModifier: {fileID: 11400000, guid: 5084fe6e6c27aed429c0f04eb3c6951e, type: 2}
+  impact: 2
