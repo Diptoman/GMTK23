@@ -68,6 +68,7 @@ public class Controller : SerializedMonoBehaviour
     private IEnumerator ResetGame(float startDelay)
     {
         canvas.GetComponent<UIController>().ResetGame();
+        Destroy(currentAdventurer.gameObject);
         yield return new WaitForSeconds(startDelay);
         StartGame();
     }

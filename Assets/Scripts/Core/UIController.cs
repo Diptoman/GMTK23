@@ -137,6 +137,18 @@ public class UIController : MonoBehaviour
 
     public void ResetGame()
     {
+        //Move dialogue box down
+        LeanTween.moveLocalY(dialogueBox, -1000f, 0f);
+
+        if (buttonReferences.Count > 0)
+        {
+            foreach(GameObject button in buttonReferences) 
+            {
+                Destroy(button);
+            }
+            buttonReferences.Clear();
+        }
+
         //Remove Game Over screen
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0.5f);
         StartCoroutine(ShowGameOverText(0f, "", ""));
