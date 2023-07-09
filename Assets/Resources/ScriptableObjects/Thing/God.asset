@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Crocodile
+  m_Name: God
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: crocodile
+  word: God
   hasAlternateUsage: 1
-  alternateWord: crocodiles
-  wordModifier: {fileID: 11400000, guid: 958552a0058e23d479f01b31aae3d3f9, type: 2}
-  impact: 1
+  alternateWord: Gods
+  wordModifier: {fileID: 11400000, guid: 414dfd66ff8230e42808022347581bcb, type: 2}
+  impact: 3

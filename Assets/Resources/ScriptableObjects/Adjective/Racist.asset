@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Crocodile
+  m_Name: Racist
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: crocodile
+  word: a racist
   hasAlternateUsage: 1
-  alternateWord: crocodiles
-  wordModifier: {fileID: 11400000, guid: 958552a0058e23d479f01b31aae3d3f9, type: 2}
-  impact: 1
+  alternateWord: racist
+  wordModifier: {fileID: 11400000, guid: febdbf56f255c3b408e558441e5f72db, type: 2}
+  impact: 3

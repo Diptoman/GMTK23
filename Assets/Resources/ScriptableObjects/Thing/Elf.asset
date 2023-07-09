@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Sparkly
+  m_Name: Elf
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: a sparkling
+  word: elf
   hasAlternateUsage: 1
-  alternateWord: sparkling
+  alternateWord: elves
   wordModifier: {fileID: 11400000, guid: f76bcb05dc49c5c48a1130ee67f8e3d1, type: 2}
-  impact: 2
+  impact: 1
