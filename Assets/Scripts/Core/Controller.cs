@@ -30,6 +30,13 @@ public class Controller : SerializedMonoBehaviour
     public List<PhraseObject> locations = new List<PhraseObject>();
     public List<PhraseObject> verbs = new List<PhraseObject>();
 
+    //Metagame
+    public float dayTimerMax = 120f;
+    private int currentDay = 0;
+    private int dayTaskNum = 4;
+    private int dayTasksCompleted = 0;
+    private bool isGameOver = false;
+
     private void Awake()
     {
         InitData();
@@ -37,7 +44,15 @@ public class Controller : SerializedMonoBehaviour
 
     private void Start()
     {
+        StartDay();
+    }
+
+    public void StartDay()
+    {
         SpawnAdventurer();
+        currentDay++;
+        dayTimerMax = dayTimerMax + (currentDay - 1) * 10f; //New day timer
+        canvas.GetComponent<UIController>().BeginDay(dayTimerMax);
     }
 
     public void SpawnAdventurer()
@@ -162,7 +177,15 @@ public class Controller : SerializedMonoBehaviour
 
     public void EndRound()
     {
-        SpawnAdventurer();
+        if (!isGameOver)
+        {
+            SpawnAdventurer();
+        }
+    }
+
+    public void OutOfTime()
+    {
+        isGameOver = true;
     }
 }
 
@@ -192,6 +215,15 @@ public enum Mood
     Neutral,
     Happy,
     Ecstatic
+}
+
+public enum EndReason
+{
+    OutOfTime,
+    KilledByWarrior,
+    KilledByMage,
+    KilledBySupport,
+    KilledByRogue
 }
 
 [Serializable]

@@ -25,12 +25,30 @@ public class UIController : MonoBehaviour
     [BoxGroup("Other UI")]
     public GameObject moodPrefab;
 
+    [BoxGroup("Timer UI")]
+    public GameObject timerText;
+    [BoxGroup("Timer UI")]
+    public GameObject timerRight;
+    [BoxGroup("Timer UI")]
+    public GameObject timerLeft;
+
+    [BoxGroup("Game Over UI")]
+    public GameObject gameOver;
+    [BoxGroup("Game Over UI")]
+    public GameObject gameOverMainText;
+    [BoxGroup("Game Over UI")]
+    public GameObject gameOverSideText;
+
     [BoxGroup("Typing")]
     public float typingSpeed = 0.04f;
     
     private TextMeshProUGUI dialogueText;
     private QuestLine selectedQuest;
     private int questLinePosition = 0;
+
+    private float currentDayTimer;
+    private float maxDayTimer;
+    private bool isOutOfTime = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +57,77 @@ public class UIController : MonoBehaviour
 
         //Move dialogue box down
         LeanTween.moveLocalY(dialogueBox, -1000f, 0f);
-        
+
+        //Remove Game Over screen
+        LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0f);
+    }
+
+    private void Update()
+    {
+        //Update timer
+        if (currentDayTimer >= 0f)
+        {
+            currentDayTimer -= Time.deltaTime;
+            timerText.GetComponent<TextMeshProUGUI>().text = Mathf.Ceil(currentDayTimer).ToString();
+            float timerPercentage = (currentDayTimer / maxDayTimer);
+            timerRight.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
+            timerLeft.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
+        } 
+        else if (!isOutOfTime)
+        {
+            controllerReference.GetComponent<Controller>().OutOfTime();
+            GameOver(EndReason.OutOfTime);
+            isOutOfTime = true;
+        }
+    }
+
+    public void BeginDay(float timer)
+    {
+        maxDayTimer = timer;
+        currentDayTimer = timer;
+        isOutOfTime = false;
+    }
+
+    public void GameOver(EndReason reason)
+    {
+        //Add Game Over screen
+        LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 1f, 0.5f);
+        string primaryText = "";
+        string secondaryText = "";
+
+        //Set text
+        switch(reason)
+        {
+            case EndReason.OutOfTime:
+                primaryText = "You couldn't fulfil today's quota!";
+                secondaryText += "You've been fired from the job for failing to meet deadlines. Welcome to being an average Joe in a game, bud.";
+                break;
+            case EndReason.KilledByWarrior:
+                primaryText = "You were mauled by a warrior!";
+                secondaryText += "You made a warrior player angry. They beat you up. You don't have medical insurance to cover the costs, so you died.";
+                break;
+            case EndReason.KilledByMage:
+                primaryText = "You were obliterated by a mage!";
+                secondaryText += "You dismayed a mage player. They used some shoddy magic to give you diarrhea, which accidentally made you explode.";
+                break;
+            case EndReason.KilledBySupport:
+                primaryText = "You were bodyshamed by a support!";
+                secondaryText += "You disappointed a support player. They said some very mean words to you, which made you sad and you quit.";
+                break;
+            case EndReason.KilledByRogue:
+                primaryText = "You were stabbed by a rogue!";
+                secondaryText += "You upset a rogue player. They backstabbed and frontstabbed and sidestabbed you. You'll probably survive but this job isn't for you.";
+                break;
+        }
+
+        StartCoroutine(ShowGameOverText(.5f, primaryText, secondaryText));
+    }
+
+    private IEnumerator ShowGameOverText(float delay, string primaryText, string secondaryText)
+    {
+        yield return new WaitForSeconds(delay);
+        gameOverMainText.GetComponent<TextMeshProUGUI>().text = primaryText;
+        gameOverSideText.GetComponent<TextMeshProUGUI>().text = secondaryText;
     }
 
     public void BeginDialogue()
