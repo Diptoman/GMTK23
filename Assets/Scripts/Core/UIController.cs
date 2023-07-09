@@ -30,6 +30,8 @@ public class UIController : MonoBehaviour
     public GameObject dayText;
     [BoxGroup("Other UI")]
     public GameObject dayImage;
+    [BoxGroup("Other UI")]
+    public GameObject holder;
 
     [BoxGroup("Timer UI")]
     public GameObject timerText;
@@ -37,6 +39,9 @@ public class UIController : MonoBehaviour
     public GameObject timerRight;
     [BoxGroup("Timer UI")]
     public GameObject timerLeft;
+
+    [BoxGroup("Main Menu UI")]
+    public GameObject mainHeader;
 
     [BoxGroup("Game Over UI")]
     public GameObject gameOver;
@@ -75,24 +80,43 @@ public class UIController : MonoBehaviour
         LeanTween.moveLocalX(dayImage, 1000f, 0f);
 
         audioSource = GetComponent<AudioSource>();
+
+        holder.SetActive(false);
+
+        //Move menu
+        LeanTween.moveLocalY(mainHeader, -1000f, 0f);
+        LeanTween.moveLocalY(mainHeader, 170f, 0.75f).setEase(LeanTweenType.easeInOutQuint);
     }
 
     private void Update()
     {
-        //Update timer
-        if (currentDayTimer >= 0f)
+        if (controllerReference.GetComponent<Controller>().gameBegun)
         {
-            currentDayTimer -= Time.deltaTime;
-            timerText.GetComponent<TextMeshProUGUI>().text = Mathf.Ceil(currentDayTimer).ToString();
-            float timerPercentage = (currentDayTimer / maxDayTimer);
-            timerRight.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
-            timerLeft.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
-        } 
-        else if (!isOutOfTime)
-        {
-            controllerReference.GetComponent<Controller>().GameOver(EndReason.OutOfTime);
-            isOutOfTime = true;
+            //Update timer
+            if (currentDayTimer >= 0f)
+            {
+                currentDayTimer -= Time.deltaTime;
+                timerText.GetComponent<TextMeshProUGUI>().text = Mathf.Ceil(currentDayTimer).ToString();
+                float timerPercentage = (currentDayTimer / maxDayTimer);
+                timerRight.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
+                timerLeft.GetComponent<RectTransform>().localScale = new Vector3(timerPercentage, 1f, 1f);
+            }
+            else if (!isOutOfTime)
+            {
+                controllerReference.GetComponent<Controller>().GameOver(EndReason.OutOfTime);
+                isOutOfTime = true;
+            }
         }
+    }
+
+    public void StartGame()
+    {
+        holder.SetActive(true);
+    }
+
+    public void EndMenu()
+    {
+        LeanTween.moveLocalY(mainHeader, -1000f, 0.75f).setEase(LeanTweenType.easeInOutQuint);
     }
 
     public void BeginDay(float timer)
@@ -126,19 +150,19 @@ public class UIController : MonoBehaviour
                 break;
             case EndReason.KilledByWarrior:
                 primaryText = "You were mauled by a warrior!";
-                secondaryText += "You made a warrior player angry. They beat you up. You don't have medical insurance to cover the costs, so you died.";
+                secondaryText += "Your quest made the warrior angry. They beat you up. You don't have medical insurance to cover the costs, so you die.";
                 break;
             case EndReason.KilledByMage:
                 primaryText = "You were obliterated by a mage!";
-                secondaryText += "You dismayed a mage player. They used some shoddy magic to give you diarrhea, which accidentally made you explode.";
+                secondaryText += "Your quest made the mage angry. They used some shoddy magic to give you diarrhea, which accidentally made you explode.";
                 break;
             case EndReason.KilledBySupport:
                 primaryText = "You were bodyshamed by a support!";
-                secondaryText += "You disappointed a support player. They said some very mean words to you, which made you sad and you quit.";
+                secondaryText += "Your quest made the support angry. They said some very mean words to you, which made you sad and you quit your NPC job.";
                 break;
             case EndReason.KilledByRogue:
                 primaryText = "You were stabbed by a rogue!";
-                secondaryText += "You upset a rogue player. They backstabbed and frontstabbed and sidestabbed you. You'll probably survive but this job isn't for you.";
+                secondaryText += "Your quest made the rogue angry. They backstabbed and frontstabbed and sidestabbed you. You'll probably survive but this job isn't for you.";
                 break;
         }
 
@@ -254,7 +278,7 @@ public class UIController : MonoBehaviour
         //Move up buttons
         foreach (GameObject buttonRef in buttonReferences)
         {
-            LeanTween.moveLocalY(buttonRef, -200f - currentIndex*70f, 0.75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .2f);
+            LeanTween.moveLocalY(buttonRef, -210f - currentIndex*80f, 0.75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .2f);
             buttonRef.GetComponent<OptionButton>().Initialize(words[currentIndex], selectedQuest.phrases[questLinePosition].wordClassification);
             currentIndex++;
         }
@@ -274,6 +298,7 @@ public class UIController : MonoBehaviour
         {
             LeanTween.moveLocalX(button, 5000f, .75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .1f);
             LeanTween.alpha(button.gameObject.GetComponent<RectTransform>(), 0f, .75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .1f);
+            button.GetComponent<Button>().interactable = false;
             Destroy(button, 2f);
             currentIndex++;
         }

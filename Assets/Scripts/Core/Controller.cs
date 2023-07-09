@@ -51,6 +51,8 @@ public class Controller : SerializedMonoBehaviour
     public AudioClip timeUp;
     public AudioClip murdered;
 
+    public bool gameBegun = false;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -60,11 +62,23 @@ public class Controller : SerializedMonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        audioSource.clip = bgMusic;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     private void Update()
     {
+        if (!gameBegun)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                canvas.GetComponent<UIController>().EndMenu();
+                gameBegun = true;
+                StartGame();
+            }
+        }
+
         if (isGameOver)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
@@ -100,6 +114,8 @@ public class Controller : SerializedMonoBehaviour
         moodTracker[Mood.Neutral] = 0;
         moodTracker[Mood.Happy] = 0;
         moodTracker[Mood.Ecstatic] = 0;
+
+        canvas.GetComponent<UIController>().StartGame();
     }
 
     public void StartDay()
