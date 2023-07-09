@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Steal
+  m_Name: Mountain
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: steal from
-  hasAlternateUsage: 1
-  alternateWord: stealing from
-  wordModifier: {fileID: 11400000, guid: e1fc639263739fc44a3f6c5d8a8bba8f, type: 2}
-  impact: 2
+  word: on top of a mountain
+  hasAlternateUsage: 0
+  alternateWord: 
+  wordModifier: {fileID: 11400000, guid: 1d317bf9f5989ac479a2c0e40fc75d5a, type: 2}
+  impact: 1

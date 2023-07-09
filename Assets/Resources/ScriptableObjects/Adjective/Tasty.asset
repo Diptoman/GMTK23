@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779787b2d0140b644badb3c0bab6a9ff, type: 3}
-  m_Name: Steal
+  m_Name: Tasty
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,8 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  word: steal from
+  word: a tasty
   hasAlternateUsage: 1
-  alternateWord: stealing from
-  wordModifier: {fileID: 11400000, guid: e1fc639263739fc44a3f6c5d8a8bba8f, type: 2}
+  alternateWord: tasty
+  wordModifier: {fileID: 11400000, guid: 5084fe6e6c27aed429c0f04eb3c6951e, type: 2}
   impact: 2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdfe8f0054b26d49bd0374484928449, type: 3}
   m_Name: Revolting
   m_EditorClassIdentifier: 
-  warriorModifier: 0
+  warriorModifier: 1
   mageModifier: -1
   supportModifier: -2
   rogueModifier: 0
