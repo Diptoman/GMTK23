@@ -46,6 +46,7 @@ public class Controller : SerializedMonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         InitData();
     }
 
@@ -92,6 +93,7 @@ public class Controller : SerializedMonoBehaviour
     public void StartDay()
     {
         SpawnAdventurer();
+        dayTasksCompleted = 0;
         currentDay++;
         dayTimerCurrentMax = dayTimerMax + currentDay * 20f; //New day timer
         currentDayTaskNum++;
@@ -231,7 +233,14 @@ public class Controller : SerializedMonoBehaviour
     {
         if (!isGameOver)
         {
-            SpawnAdventurer();
+            if (dayTasksCompleted == currentDayTaskNum)
+            {
+                StartDay();
+            }
+            else
+            {
+                SpawnAdventurer();
+            }
         }
     }
 

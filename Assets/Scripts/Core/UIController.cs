@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -26,6 +25,10 @@ public class UIController : MonoBehaviour
     public GameObject moodPrefab;
     [BoxGroup("Other UI")]
     public GameObject questText;
+    [BoxGroup("Other UI")]
+    public GameObject dayText;
+    [BoxGroup("Other UI")]
+    public GameObject dayImage;
 
     [BoxGroup("Timer UI")]
     public GameObject timerText;
@@ -63,6 +66,9 @@ public class UIController : MonoBehaviour
         //Remove Game Over screen
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0f);
         LeanTween.scale(gameOver.GetComponent<RectTransform>(), Vector3.zero, 0f);
+
+        //Remove day image
+        LeanTween.moveLocalX(dayImage, 1000f, 0f);
     }
 
     private void Update()
@@ -89,6 +95,7 @@ public class UIController : MonoBehaviour
         currentDayTimer = timer;
         isOutOfTime = false;
         UpdateTaskText();
+        UpdateDayText();
     }
 
     public void GameOver(EndReason reason)
@@ -139,6 +146,7 @@ public class UIController : MonoBehaviour
 
         //Remove quest text
         LeanTween.scale(questText.GetComponent<RectTransform>(), Vector3.zero, 0.1f);
+        LeanTween.scale(dayText.GetComponent<RectTransform>(), Vector3.zero, 0.1f);
     }
 
     public void ResetGame()
@@ -158,7 +166,9 @@ public class UIController : MonoBehaviour
         //Remove Game Over screen
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0.5f);
         LeanTween.scale(gameOver.GetComponent<RectTransform>(), Vector3.zero, 0f);
+        //Add back texts
         LeanTween.scale(questText.GetComponent<RectTransform>(), Vector3.one, 0.1f);
+        LeanTween.scale(dayText.GetComponent<RectTransform>(), Vector3.one, 0.1f);
         StartCoroutine(ShowGameOverText(0f, "", ""));
     }
 
@@ -284,5 +294,14 @@ public class UIController : MonoBehaviour
         float totalTasks = controllerReference.GetComponent<Controller>().currentDayTaskNum;
         float completedTasks = controllerReference.GetComponent<Controller>().dayTasksCompleted;
         questText.GetComponent<TextMeshProUGUI>().text = "Tasks completed: " + completedTasks + "/" + totalTasks;
+    }
+
+    public void UpdateDayText()
+    {
+        //Remove day image
+        LeanTween.moveLocalX(dayImage, 600f, 0.5f).setEase(LeanTweenType.easeInOutQuint);
+        LeanTween.moveLocalX(dayImage, 1000f, 0.5f).setEase(LeanTweenType.easeInOutQuint).setDelay(3f);
+        int day = controllerReference.GetComponent<Controller>().currentDay;
+        dayText.GetComponent<TextMeshProUGUI>().text = "Day: " + day;
     }
 }
