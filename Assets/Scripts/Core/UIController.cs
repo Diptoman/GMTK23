@@ -60,6 +60,7 @@ public class UIController : MonoBehaviour
 
         //Remove Game Over screen
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0f);
+        LeanTween.scale(gameOver.GetComponent<RectTransform>(), Vector3.zero, 0f);
     }
 
     private void Update()
@@ -75,8 +76,7 @@ public class UIController : MonoBehaviour
         } 
         else if (!isOutOfTime)
         {
-            controllerReference.GetComponent<Controller>().OutOfTime();
-            GameOver(EndReason.OutOfTime);
+            controllerReference.GetComponent<Controller>().GameOver(EndReason.OutOfTime);
             isOutOfTime = true;
         }
     }
@@ -91,6 +91,7 @@ public class UIController : MonoBehaviour
     public void GameOver(EndReason reason)
     {
         //Add Game Over screen
+        LeanTween.scale(gameOver.GetComponent<RectTransform>(), Vector3.one, 0f);
         LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 1f, 0.5f);
         string primaryText = "";
         string secondaryText = "";
@@ -120,7 +121,25 @@ public class UIController : MonoBehaviour
                 break;
         }
 
+        secondaryText += "\n You managed " + controllerReference.GetComponent<Controller>().currentDay + " day(s) without messing it up.";
+
+        //Add mood numbers
+        secondaryText += "\n\n TALLY!\n Ecstatic adventurers: " + controllerReference.GetComponent<Controller>().moodTracker[Mood.Ecstatic];
+        secondaryText += "\n Happy adventurers: " + controllerReference.GetComponent<Controller>().moodTracker[Mood.Happy];
+        secondaryText += "\n Indifferent adventurers: " + controllerReference.GetComponent<Controller>().moodTracker[Mood.Neutral];
+        secondaryText += "\n Confused adventurers: " + controllerReference.GetComponent<Controller>().moodTracker[Mood.Confused];
+        secondaryText += "\n Angry adventurer: " + controllerReference.GetComponent<Controller>().moodTracker[Mood.Angry];
+
+        secondaryText += "\n\n\n Enter/Space to restart";
+
         StartCoroutine(ShowGameOverText(.5f, primaryText, secondaryText));
+    }
+
+    public void ResetGame()
+    {
+        //Remove Game Over screen
+        LeanTween.alpha(gameOver.GetComponent<RectTransform>(), 0f, 0.5f);
+        StartCoroutine(ShowGameOverText(0f, "", ""));
     }
 
     private IEnumerator ShowGameOverText(float delay, string primaryText, string secondaryText)

@@ -32,10 +32,17 @@ public class Controller : SerializedMonoBehaviour
 
     //Metagame
     public float dayTimerMax = 120f;
-    private int currentDay = 0;
-    private int dayTaskNum = 4;
-    private int dayTasksCompleted = 0;
+    [HideInInspector]
+    public float dayTimerCurrentMax;
+    [HideInInspector]
+    public int currentDay = 0;
+    public int dayTaskNum = 4;
+    [HideInInspector]
+    public float currentDayTaskNum;
+    [HideInInspector]
+    public int dayTasksCompleted = 0;
     private bool isGameOver = false;
+    public Dictionary<Mood, int> moodTracker = new Dictionary<Mood, int>(); 
 
     private void Awake()
     {
@@ -44,15 +51,50 @@ public class Controller : SerializedMonoBehaviour
 
     private void Start()
     {
+        StartGame();
+    }
+
+    private void Update()
+    {
+        if (isGameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                StartCoroutine(ResetGame(.75f));
+            }
+        }
+    }
+
+    private IEnumerator ResetGame(float startDelay)
+    {
+        canvas.GetComponent<UIController>().ResetGame();
+        yield return new WaitForSeconds(startDelay);
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        dayTimerCurrentMax = dayTimerMax;
+        currentDay = 0;
+        currentDayTaskNum = dayTaskNum;
+
         StartDay();
+
+        //Reset mood tracker
+        moodTracker[Mood.Angry] = 0;
+        moodTracker[Mood.Confused] = 0;
+        moodTracker[Mood.Neutral] = 0;
+        moodTracker[Mood.Happy] = 0;
+        moodTracker[Mood.Ecstatic] = 0;
     }
 
     public void StartDay()
     {
         SpawnAdventurer();
+        canvas.GetComponent<UIController>().BeginDay(dayTimerCurrentMax);
         currentDay++;
-        dayTimerMax = dayTimerMax + (currentDay - 1) * 10f; //New day timer
-        canvas.GetComponent<UIController>().BeginDay(dayTimerMax);
+        dayTimerCurrentMax = dayTimerMax + currentDay * 20f; //New day timer
+        currentDayTaskNum++;
     }
 
     public void SpawnAdventurer()
@@ -102,6 +144,13 @@ public class Controller : SerializedMonoBehaviour
         {
             verbs.Add((PhraseObject)data);
         }
+
+        //Set moods
+        moodTracker.Add(Mood.Angry, 0);
+        moodTracker.Add(Mood.Confused, 0);
+        moodTracker.Add(Mood.Neutral, 0);
+        moodTracker.Add(Mood.Happy, 0);
+        moodTracker.Add(Mood.Ecstatic, 0);
     }
 
     public List<PhraseObject> PickOptions(WordClassification wordClass, int amount)
@@ -162,15 +211,17 @@ public class Controller : SerializedMonoBehaviour
         if (finalMood != Mood.Angry)
         {
             //Clean up this round
-            Debug.Log("Fugging Off");
             currentAdventurer.GetComponent<Adventurer>().FuggOff();
+            dayTasksCompleted += 1;
         }
         else
         {
             //End game
-            Debug.Log("Murdering you");
             currentAdventurer.GetComponent<Adventurer>().BitchSlap();
         }
+
+        //Add to mood tracker
+        moodTracker[finalMood] = moodTracker[finalMood] + 1;
 
         canvas.GetComponent<UIController>().EndDialogue();
     }
@@ -183,9 +234,10 @@ public class Controller : SerializedMonoBehaviour
         }
     }
 
-    public void OutOfTime()
+    public void GameOver(EndReason reason)
     {
         isGameOver = true;
+        canvas.GetComponent<UIController>().GameOver(reason);
     }
 }
 

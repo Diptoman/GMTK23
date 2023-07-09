@@ -36,7 +36,21 @@ public class Adventurer : MonoBehaviour
     public void OnFinishExit()
     {
         controller.GetComponent<Controller>().EndRound();
-        Destroy(this.gameObject);
+        
+    }
+
+    public void OnFinishAttack()
+    {
+        EndReason reason = EndReason.OutOfTime;
+        Destroy(this.gameObject, .5f);
+        switch (characterClass)
+        {
+            case CharacterClass.Warrior: reason = EndReason.KilledByWarrior; break;
+            case CharacterClass.Mage: reason = EndReason.KilledByMage; break;
+            case CharacterClass.Support: reason = EndReason.KilledBySupport; break;
+            case CharacterClass.Rogue: reason = EndReason.KilledByRogue; break;
+        }
+        controller.GetComponent<Controller>().GameOver(reason);
     }
 
     public void FuggOff()
