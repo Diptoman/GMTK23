@@ -17,6 +17,9 @@ public class PhraseObject : SerializedScriptableObject
 
     void OnValidate()
     {
+        if (Application.isPlaying)
+            return;
+
         var isObjectNameMatching = word.ToLower().Contains(this.name.ToLower());
         var isAltMatching = alternateWord.ToLower().Contains(this.name.ToLower());
 
