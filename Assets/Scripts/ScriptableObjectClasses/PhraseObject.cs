@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "PhraseObject", menuName = "Word or Phrase")]
-public class PhraseObject : ScriptableObject
+public class PhraseObject : SerializedScriptableObject
 {
     public string word;
     [Tooltip("If the word has an alternate use, eg. plural for nouns, or present tense for verb")]
@@ -20,5 +20,5 @@ public class PhraseObject : ScriptableObject
     public int idealLevel = 1;
     [ShowIf("@this.useLevelModifier == true")]
     [Range(0f, 4f)]
-    public float maxLevelModifier = 4f;
+    public float maxLevelModifier = 2f;
 }

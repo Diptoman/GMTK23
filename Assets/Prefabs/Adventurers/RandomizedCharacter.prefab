@@ -215,6 +215,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7afc05a96954ada47a84ec1a8e0f0df9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4122796266066025325}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7afc05a96954ada47a84ec1a8e0f0df9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1249911995621528185}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7afc05a96954ada47a84ec1a8e0f0df9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 555652264821945079}
     - targetCorrespondingSourceObject: {fileID: -7327382465980588677, guid: 7afc05a96954ada47a84ec1a8e0f0df9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2111264427354258638}
@@ -580,6 +586,125 @@ MonoBehaviour:
     - {fileID: 2431480372602122016}
     - {fileID: 4703678027084755948}
     - {fileID: 7297471372172424776}
+--- !u!114 &1249911995621528185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5132729325250001628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d892a08b1f3fde4395c72c1eff94482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: moodCeilingsPerPhrase
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Mood, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Mood, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: -4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: -2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  adventurerLevel: 1
+  characterClass: 0
+  controller: {fileID: 0}
+--- !u!95 &555652264821945079
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5132729325250001628}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b166b754ce1c08e4eb0bf3a7cfff4377, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5258429156090836246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -9006136556912282981, guid: 7afc05a96954ada47a84ec1a8e0f0df9, type: 3}

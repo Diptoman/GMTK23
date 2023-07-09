@@ -1,3 +1,4 @@
+using Sirenix.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,7 @@ public class Adventurer : MonoBehaviour
 {
     public int adventurerLevel = 1;
     public CharacterClass characterClass;
-
-    private float levelModBase = 2f;
-    public virtual float CalculateMultiplier(WordType wordType) { return 1f; }
+    public GameObject controller; //So much tightly coupled poor design for time's sake ;_;
 
     public float ParseWordOrPhrase(PhraseObject phrase)
     {
@@ -21,12 +20,17 @@ public class Adventurer : MonoBehaviour
             case CharacterClass.Rogue: multiplier = phrase.wordModifier.rogueModifier; break;
         }
         
-        float levelMod = 1f;
+        float levelMod = 0f;
         if (phrase.useLevelModifier)
         {
             levelMod = phrase.maxLevelModifier - Mathf.Abs(adventurerLevel - phrase.idealLevel) * (phrase.maxLevelModifier / 100f);
         }
         return ((phrase.impact * multiplier) + levelMod);
+    }
+
+    public void OnFinishEnter()
+    {
+        controller.GetComponent<Controller>().BeginDialogueSequence();
     }
 }
 

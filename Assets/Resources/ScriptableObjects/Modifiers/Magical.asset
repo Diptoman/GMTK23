@@ -15,4 +15,4 @@ MonoBehaviour:
   warriorModifier: -1
   mageModifier: 2
   supportModifier: 1
-  rogueModifier: 0
+  rogueModifier: -1

@@ -30,6 +30,7 @@ public class CharacterRandomizer : MonoBehaviour
 
     public void RandomizeCharacter(CharacterClass charClass)
     {
+        selectedClass = charClass;
         var canHatBeEmpty = charClass == CharacterClass.Warrior;
         var canHaveNoShirt = charClass == CharacterClass.Warrior || charClass == CharacterClass.Rogue;
         var canHaveNoHat = charClass == CharacterClass.Warrior || charClass == CharacterClass.Rogue;

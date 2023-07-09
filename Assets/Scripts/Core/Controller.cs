@@ -7,10 +7,22 @@ using System;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Controller : MonoBehaviour
+public class Controller : SerializedMonoBehaviour
 {
-    [OdinSerialize]
     public List<QuestLine> questStructures = new List<QuestLine>();
+
+    [OdinSerialize]
+    public Dictionary<Mood, float> moodCeilingsPerPhrase = new Dictionary<Mood, float>();
+    [OdinSerialize]
+    public Dictionary<Mood, float> moodCeilingsOverall = new Dictionary<Mood, float>();
+
+    [Title("Scene References")]
+    public GameObject canvas;
+
+    [Title("Prefab")]
+    public GameObject adventurerPrefab;
+    private GameObject currentAdventurer;
+    private float currentMoodScore = 0f;
 
     [Title("Autofills")]
     public List<PhraseObject> things = new List<PhraseObject>();
@@ -21,6 +33,25 @@ public class Controller : MonoBehaviour
     private void Awake()
     {
         InitData();
+    }
+
+    private void Start()
+    {
+        SpawnAdventurer();
+    }
+
+    public void SpawnAdventurer()
+    {
+        CharacterClass selectedClass = (CharacterClass)UnityEngine.Random.Range(0, 4);
+        currentAdventurer = Instantiate(adventurerPrefab);
+        currentAdventurer.GetComponent<CharacterRandomizer>().RandomizeCharacter(selectedClass);
+        currentAdventurer.GetComponent<Adventurer>().characterClass = selectedClass;
+        currentAdventurer.GetComponent<Adventurer>().controller = this.gameObject;
+    }
+
+    public void BeginDialogueSequence()
+    {
+        canvas.GetComponent<UIController>().BeginDialogue();
     }
 
     private void InitData()
@@ -79,6 +110,31 @@ public class Controller : MonoBehaviour
 
         return selectedWordList;
     }
+
+    public void ParseCurrentPhrase(PhraseObject phrase)
+    {
+        float moodScore = currentAdventurer.GetComponent<Adventurer>().ParseWordOrPhrase(phrase);
+        currentMoodScore += moodScore;
+        Mood moodFromWord = ParseMood(moodCeilingsPerPhrase, moodScore);
+        Debug.Log("Mood from this: " + moodScore + " with mood " + moodFromWord);
+        canvas.GetComponent<UIController>().ShowPhraseMoodIndicator(moodFromWord);
+    }
+
+    private Mood ParseMood(Dictionary<Mood, float> moodMap, float moodAmount)
+    {
+        float currentCeiling = -999f;
+        foreach (KeyValuePair<Mood, float> mood in moodMap)
+        {
+            float nextCeiling = mood.Value;
+            if (moodAmount > currentCeiling && moodAmount <= nextCeiling)
+            {
+                return mood.Key;
+            }
+            currentCeiling = nextCeiling;
+        }
+
+        return Mood.Ecstatic;
+    }
 }
 
 public enum WordClassification
@@ -98,6 +154,15 @@ public enum WordType
     Careful,
     Magical,
     Greedy
+}
+
+public enum Mood
+{
+    Angry,
+    Confused,
+    Neutral,
+    Happy,
+    Ecstatic
 }
 
 [Serializable]

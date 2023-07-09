@@ -22,6 +22,9 @@ public class UIController : MonoBehaviour
     [BoxGroup("Dialogue UI")]
     public GameObject buttonPrefab;
 
+    [BoxGroup("Other UI")]
+    public GameObject moodPrefab;
+
     [BoxGroup("Typing")]
     public float typingSpeed = 0.04f;
     
@@ -35,8 +38,7 @@ public class UIController : MonoBehaviour
         dialogueText = dialogueTextObj.GetComponent<TextMeshProUGUI>();
 
         //Move dialogue box down
-        LeanTween.moveLocalY(dialogueBox, -500f, 0f);
-        BeginDialogue();
+        LeanTween.moveLocalY(dialogueBox, -1000f, 0f);
         
     }
 
@@ -81,19 +83,12 @@ public class UIController : MonoBehaviour
         List<PhraseObject> words = controllerReference.GetComponent<Controller>().PickOptions(selectedQuest.phrases[questLinePosition].wordClassification, 3);
         int currentIndex = 0;
 
-        //Pick alternate if needed
-        bool useAlternate = false;
-        switch (selectedQuest.phrases[questLinePosition].wordClassification)
-        {
-            case WordClassification.Things: useAlternate = true; break;
-        }
-
         //Create buttons
         for(int i=0; i < words.Count; i++) 
         {
             GameObject option = Instantiate(buttonPrefab, dialogueBox.transform);
             buttonReferences.Add(option);
-            LeanTween.moveLocalY(option, -500f, 0f);
+            LeanTween.moveLocalY(option, -1000f, 0f);
 
             //Bind
             option.GetComponent<Button>().onClick.AddListener(delegate { OptionSelected(option); });
@@ -102,8 +97,8 @@ public class UIController : MonoBehaviour
         //Move up buttons
         foreach (GameObject buttonRef in buttonReferences)
         {
-            LeanTween.moveLocalY(buttonRef, -130f - currentIndex*40f, 0.75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .2f);
-            buttonRef.GetComponentInChildren<TextMeshProUGUI>().text = useAlternate == false ? words[currentIndex].word : words[currentIndex].alternateWord;
+            LeanTween.moveLocalY(buttonRef, -200f - currentIndex*70f, 0.75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .2f);
+            buttonRef.GetComponent<OptionButton>().Initialize(words[currentIndex], selectedQuest.phrases[questLinePosition].wordClassification);
             currentIndex++;
         }
     }
@@ -113,6 +108,9 @@ public class UIController : MonoBehaviour
         string text = buttonRef.GetComponentInChildren<TextMeshProUGUI>().text;
         int currentIndex = 0;
         dialogueText.text += text;
+
+        //Parse the phrase
+        controllerReference.GetComponent<Controller>().ParseCurrentPhrase(buttonRef.GetComponent<OptionButton>().GetAssociatedPhrase());
 
         //Move down buttons
         foreach (GameObject button in buttonReferences)
@@ -129,6 +127,12 @@ public class UIController : MonoBehaviour
     public void DecideQuestResult()
     {
 
+    }
+
+    public void ShowPhraseMoodIndicator(Mood mood)
+    {
+        GameObject moodBox = Instantiate(moodPrefab, transform);
+        moodBox.GetComponent<MoodBox>().SetMood(mood);
     }
 
     private IEnumerator ContinueTyping(float delay, string text, int positionInQuest)
