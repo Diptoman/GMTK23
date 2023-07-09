@@ -32,6 +32,22 @@ public class Adventurer : MonoBehaviour
     {
         controller.GetComponent<Controller>().BeginDialogueSequence();
     }
+
+    public void OnFinishExit()
+    {
+        controller.GetComponent<Controller>().EndRound();
+        Destroy(this.gameObject);
+    }
+
+    public void FuggOff()
+    {
+        GetComponent<Animator>().SetTrigger("FuggOff");
+    }
+
+    public void BitchSlap()
+    {
+        GetComponent<Animator>().SetTrigger("BitchSlap");
+    }
 }
 
 public enum CharacterClass

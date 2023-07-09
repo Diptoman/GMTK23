@@ -95,15 +95,16 @@ public class Controller : SerializedMonoBehaviour
         List<PhraseObject> selectedWordList = new List<PhraseObject>();
         switch (wordClass)
         {
-            case WordClassification.Adjective: wordList = adjectives; break;
-            case WordClassification.Location: wordList = locations; break;
-            case WordClassification.Thing: wordList = things; break;
-            case WordClassification.Things: wordList = things; break;
+            case WordClassification.Adjective: wordList.AddRange(adjectives); break;
+            case WordClassification.Location: wordList.AddRange(locations); break;
+            case WordClassification.Thing: wordList.AddRange(things); break;
+            case WordClassification.Things: wordList.AddRange(things); break;
         }
 
         for(int i=0; i<amount; i++)
         {
             int randomIndex = Random.Range(0, wordList.Count - 1);
+            Debug.Log("Wordlist Count" + wordList.Count);
             selectedWordList.Add(wordList[randomIndex]);
             wordList.RemoveAt(randomIndex);
         }
@@ -117,7 +118,7 @@ public class Controller : SerializedMonoBehaviour
         currentMoodScore += moodScore;
         Mood moodFromWord = ParseMood(moodCeilingsPerPhrase, moodScore);
         Debug.Log("Mood from this: " + moodScore + " with mood " + moodFromWord);
-        canvas.GetComponent<UIController>().ShowPhraseMoodIndicator(moodFromWord);
+        canvas.GetComponent<UIController>().ShowMoodIndicator(moodFromWord);
     }
 
     private Mood ParseMood(Dictionary<Mood, float> moodMap, float moodAmount)
@@ -134,6 +135,34 @@ public class Controller : SerializedMonoBehaviour
         }
 
         return Mood.Ecstatic;
+    }
+
+    public void DecideQuestResult()
+    {
+        Mood finalMood = ParseMood(moodCeilingsOverall, currentMoodScore);
+        canvas.GetComponent<UIController>().ShowMoodIndicator(finalMood, 2);
+        Debug.Log("Final mood is " + finalMood);
+        currentMoodScore = 0f;
+
+        if (finalMood != Mood.Angry)
+        {
+            //Clean up this round
+            Debug.Log("Fugging Off");
+            currentAdventurer.GetComponent<Adventurer>().FuggOff();
+        }
+        else
+        {
+            //End game
+            Debug.Log("Murdering you");
+            currentAdventurer.GetComponent<Adventurer>().BitchSlap();
+        }
+
+        canvas.GetComponent<UIController>().EndDialogue();
+    }
+
+    public void EndRound()
+    {
+        SpawnAdventurer();
     }
 }
 

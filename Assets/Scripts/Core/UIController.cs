@@ -44,6 +44,8 @@ public class UIController : MonoBehaviour
 
     public void BeginDialogue()
     {
+        dialogueText.text = ""; //Reset text
+        questLinePosition = 0;
         LeanTween.moveLocalY(dialogueBox, 50f, .75f).setEase(LeanTweenType.easeInOutQuint);
 
         //Get the sentence structures
@@ -56,9 +58,15 @@ public class UIController : MonoBehaviour
         ParseQuestLine(.75f);
     }
 
+    public void EndDialogue()
+    {
+        LeanTween.moveLocalY(dialogueBox, 100f, .5f).setEase(LeanTweenType.easeInOutQuint);
+        LeanTween.moveLocalY(dialogueBox, -1000f, .5f).setDelay(2f).setEase(LeanTweenType.easeInOutQuint); //Reset Y
+    }
+
     public void ParseQuestLine(float delay)
     {
-        if (selectedQuest.phrases.Count > questLinePosition + 1)
+        if (selectedQuest.phrases.Count >= questLinePosition + 1)
         {
             if (!selectedQuest.phrases[questLinePosition].useExistingPhraseHere)
             {
@@ -71,7 +79,7 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            DecideQuestResult();
+            controllerReference.GetComponent<Controller>().DecideQuestResult();
         }
 
         questLinePosition++;
@@ -116,6 +124,7 @@ public class UIController : MonoBehaviour
         foreach (GameObject button in buttonReferences)
         {
             LeanTween.moveLocalX(button, 5000f, .75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .1f);
+            LeanTween.alpha(button.gameObject.GetComponent<RectTransform>(), 0f, .75f).setEase(LeanTweenType.easeInOutQuint).setDelay(currentIndex * .1f);
             Destroy(button, 2f);
             currentIndex++;
         }
@@ -124,15 +133,10 @@ public class UIController : MonoBehaviour
         ParseQuestLine(0);
     }
 
-    public void DecideQuestResult()
-    {
-
-    }
-
-    public void ShowPhraseMoodIndicator(Mood mood)
+    public void ShowMoodIndicator(Mood mood, int size = 1)
     {
         GameObject moodBox = Instantiate(moodPrefab, transform);
-        moodBox.GetComponent<MoodBox>().SetMood(mood);
+        moodBox.GetComponent<MoodBox>().SetMood(mood, size);
     }
 
     private IEnumerator ContinueTyping(float delay, string text, int positionInQuest)

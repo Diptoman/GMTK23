@@ -557,7 +557,7 @@ MonoBehaviour:
       phrase: 
       wordClassification: 1
     - useExistingPhraseHere: 0
-      phrase: .
+      phrase: '. '
       wordClassification: 0
   canvas: {fileID: 2030566344}
   adventurerPrefab: {fileID: 5132729325250001628, guid: 4569c1f3b7c20f1498cf88f7c154593d, type: 3}
