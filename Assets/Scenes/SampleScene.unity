@@ -2399,7 +2399,7 @@ MonoBehaviour:
   gameOver: {fileID: 895835992}
   gameOverMainText: {fileID: 805166620}
   gameOverSideText: {fileID: 1505045984}
-  typingSpeed: 0.04
+  typingSpeed: 0.01
   newDay: {fileID: 8300000, guid: 88d26f4cd9ba18f4da11fb514c74e94d, type: 3}
   timer: {fileID: 8300000, guid: 8a9a0c3750ca42c46b865305ed590deb, type: 3}
   timerBegun: 0
