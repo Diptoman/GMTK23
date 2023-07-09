@@ -31,6 +31,7 @@ public class Controller : SerializedMonoBehaviour
     public List<PhraseObject> verbs = new List<PhraseObject>();
 
     //Metagame
+    [Title("Meta")]
     public float dayTimerMax = 100f;
     [HideInInspector]
     public float dayTimerCurrentMax;
@@ -42,11 +43,18 @@ public class Controller : SerializedMonoBehaviour
     [HideInInspector]
     public int dayTasksCompleted = 0;
     private bool isGameOver = false;
-    public Dictionary<Mood, int> moodTracker = new Dictionary<Mood, int>(); 
+    public Dictionary<Mood, int> moodTracker = new Dictionary<Mood, int>();
+
+    [Title("Audio")]
+    private AudioSource audioSource;
+    public AudioClip bgMusic;
+    public AudioClip timeUp;
+    public AudioClip murdered;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
+        audioSource = GetComponent<AudioSource>();
         InitData();
     }
 

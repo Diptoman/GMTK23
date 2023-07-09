@@ -19,13 +19,7 @@ public class Adventurer : MonoBehaviour
             case CharacterClass.Support: multiplier = phrase.wordModifier.supportModifier; break;
             case CharacterClass.Rogue: multiplier = phrase.wordModifier.rogueModifier; break;
         }
-        
-        float levelMod = 0f;
-        if (phrase.useLevelModifier)
-        {
-            levelMod = phrase.maxLevelModifier - Mathf.Abs(adventurerLevel - phrase.idealLevel) * (phrase.maxLevelModifier / 100f);
-        }
-        return ((phrase.impact * multiplier) + levelMod);
+        return (phrase.impact * multiplier);
     }
 
     public void OnFinishEnter()

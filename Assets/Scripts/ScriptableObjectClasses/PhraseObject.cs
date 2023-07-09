@@ -14,11 +14,4 @@ public class PhraseObject : SerializedScriptableObject
     public WordModifier wordModifier;
     [Range(1f, 4f)]
     public float impact = 1f;
-    public bool useLevelModifier = false;
-    [ShowIf("@this.useLevelModifier == true")]
-    [Range(1, 100)]
-    public int idealLevel = 1;
-    [ShowIf("@this.useLevelModifier == true")]
-    [Range(0f, 4f)]
-    public float maxLevelModifier = 2f;
 }
